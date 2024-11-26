@@ -1,6 +1,6 @@
 # go-mock-api-server
 
-Mock server Go: Genera API fittizie configurabili per lo sviluppo e il testing.
+Mock API Server Go. Genera API fittizie configurabili tramite file JSON per test e sviluppo.
 
 
 ## Descrizione
@@ -12,7 +12,7 @@ Nella configurazione degli endpoint è possibile impostare il path, il motodo HT
 
 ## Configurazione
 
-Aggiungere nella cartella `data` i file JSON con le configurazioni dei singoli endpoint.
+Aggiungere nella cartella `config` i file JSON con le configurazioni dei singoli endpoint.
 
 Esempio:
 
@@ -36,7 +36,7 @@ In questo caso:
 - L'**Endpoint**, il _path_ dove puntare la richiesta è `/v1/user`
 - La **Risposta** sarà `[{"id": 1,"name": "Tom"}]`
 
-Altri esempi di file JSON già configurati sono presenti all'interno della cartella `data`.
+Altri esempi di file JSON già configurati sono presenti all'interno della cartella `config`.
 
 | File                  | Path                  | Method    |
 |:----------------------|:----------------------|:----------|
@@ -86,8 +86,14 @@ docker run -it -d --name go-mock-api-server -p 8080:8080 go-mock-api-server
 ```go
 // NOTE Variabili globali
 var serverPort = "8080" // porta in ascolto sul server
-var dataFolder = "data" // nome della cartella contenete i file json con le configurazioni dei singoli endpoint
+var configFolder = "config" // nome della cartella contenete i file json con le configurazioni dei singoli endpoint
 ```
 
-Nel caso di un _esecuzione_ tramite _docker strategy_ dovranno essere modificati anche il `Dockerfile` per la cartella `data` e la porta nel comando `docker run ... -p PORTA_HOST:PORTA_APP ...`
+Nel caso di un _esecuzione_ tramite _docker strategy_ dovranno essere modificati anche il `Dockerfile` per la cartella `config` e la porta nel comando `docker run ... -p PORTA_HOST:PORTA_APP ...`
+
+
+## TODO
+
+- [ ] con docker strategy, aggiungi variabile d'ambiente su dokerfile per impostare il nome della cartella contenente i file JSON di configurazione
+- [ ] con docker strategy imposta aggiungi opzione volume sulla cartella contenente i file JSON
 
