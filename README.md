@@ -89,11 +89,15 @@ var serverPort = "8080" // porta in ascolto sul server
 var configFolder = "config" // nome della cartella contenete i file json con le configurazioni dei singoli endpoint
 ```
 
-Nel caso di un _esecuzione_ tramite _docker strategy_ dovranno essere modificati anche il `Dockerfile` per la cartella `config` e la porta nel comando `docker run ... -p PORTA_HOST:PORTA_APP ...`
+Nel caso di un _esecuzione_ tramite _docker strategy_ dovranno essere modificati anche i parametri del comando di `docker run` per l'argomento che imposta il nome della cartella contenente i file di configurazione JSON `CONFIG_DIR` e la porta si ascolto dell'applicazione:
+
+- `docker build --build-arg CONFIG_DIR=config_dir_personalizzata ...` 
+- `docker run ... -p PORTA_HOST:PORTA_APP ...`
 
 
 ## TODO
 
-- [ ] con docker strategy, aggiungi variabile d'ambiente su dockerfile per impostare il nome della cartella contenente i file JSON di configurazione
+- [x] con docker strategy, aggiungi variabile d'ambiente su dockerfile per impostare il nome della cartella contenente i file JSON di configurazione
 - [ ] con docker strategy imposta aggiungi opzione volume sulla cartella contenente i file JSON
+- [ ] aggiungi gestione dell'errore (possibilmente nella fase di init) per evitare il panic nel caso ci siano due endpoint con path identici
 
