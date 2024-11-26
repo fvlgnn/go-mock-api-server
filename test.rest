@@ -1,0 +1,9 @@
+GET /v1/users HTTP/1.1
+Host: 127.0.0.1:8080
+
+# DELETE /v1/delete HTTP/1.1
+# Host: 127.0.0.1:8080
+
+# POST /v1/users/create HTTP/1.1
+# Host: 127.0.0.1:8080
+# Content-Type: application/json

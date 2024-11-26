@@ -1,0 +1,10 @@
+{
+    "request": {
+      "method": "POST",
+      "path": "/v1/user/create"
+    },
+    "response": {
+      "body": { "status": "success", "id": 3 }
+    }
+  }
+  

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/v1/users"
+  },
+  "response": {
+    "body": [
+      { "id": 1, "name": "Tom" },
+      { "id": 2, "name": "Fed" },
+      { "id": 3, "name": "Bob" },
+      { "id": 4, "name": "Jon" }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "request": {
+      "method": "DELETE",
+      "path": "/v1/user/delete/3"
+    },
+    "response": {
+      "body": { "status": "success", "description": "user deleted", "id": 3 }
+    }
+  }
+  
