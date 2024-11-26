@@ -94,6 +94,6 @@ Nel caso di un _esecuzione_ tramite _docker strategy_ dovranno essere modificati
 
 ## TODO
 
-- [ ] con docker strategy, aggiungi variabile d'ambiente su dokerfile per impostare il nome della cartella contenente i file JSON di configurazione
+- [ ] con docker strategy, aggiungi variabile d'ambiente su dockerfile per impostare il nome della cartella contenente i file JSON di configurazione
 - [ ] con docker strategy imposta aggiungi opzione volume sulla cartella contenente i file JSON
 
