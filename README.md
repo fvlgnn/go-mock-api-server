@@ -86,7 +86,7 @@ docker run -it -d --name go-mock-api-server -p 8080:8080 go-mock-api-server
 ```go
 // NOTE Variabili globali
 var serverPort = "8080" // porta in ascolto sul server
-var configFolder = "config" // nome della cartella contenete i file json con le configurazioni dei singoli endpoint
+var configDir = "config" // nome della cartella contenete i file json con le configurazioni dei singoli endpoint
 ```
 
 Nel caso di un _esecuzione_ tramite _docker strategy_ dovranno essere modificati anche i parametri del comando di `docker run` per l'argomento che imposta il nome della cartella contenente i file di configurazione JSON `CONFIG_DIR` e la porta si ascolto dell'applicazione:
@@ -100,4 +100,5 @@ Nel caso di un _esecuzione_ tramite _docker strategy_ dovranno essere modificati
 - [x] con docker strategy, aggiungi variabile d'ambiente su dockerfile per impostare il nome della cartella contenente i file JSON di configurazione
 - [ ] con docker strategy imposta aggiungi opzione volume sulla cartella contenente i file JSON
 - [ ] aggiungi gestione dell'errore (possibilmente nella fase di init) per evitare il panic nel caso ci siano due endpoint con path identici
+- [ ] aggiungi su `main.go` una condizione per il quale se impostata la variabile `CONFIG_DIR` modifica la variabile globale `var configDir = "config"` (esempio `var configDir = os.Getenv("CONFIG_DIR")`)
 

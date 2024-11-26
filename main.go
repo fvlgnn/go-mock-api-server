@@ -10,8 +10,8 @@ import (
 )
 
 // NOTE Variabili globali
-var serverPort = "8080"     // porta in ascolto sul server
-var configFolder = "config" // nome della cartella contenete i file json con le configurazioni dei singoli endpoint
+var serverPort = "8080"  // porta in ascolto sul server
+var configDir = "config" // nome della cartella contenete i file json con le configurazioni dei singoli endpoint
 
 type EndpointConfig struct {
 	Request struct {
@@ -23,15 +23,15 @@ type EndpointConfig struct {
 	} `json:"response"`
 }
 
-func loadConfig(configDir string, mux *http.ServeMux) error {
+func loadConfig(dirName string, mux *http.ServeMux) error {
 	// Legge i file JSON dalla cartella
-	files, err := os.ReadDir(configDir)
+	files, err := os.ReadDir(dirName)
 	if err != nil {
-		return fmt.Errorf("impossibile leggere la directory %s: %w", configDir, err)
+		return fmt.Errorf("impossibile leggere la directory %s: %w", dirName, err)
 	}
 	for _, file := range files {
 		if filepath.Ext(file.Name()) == ".json" {
-			configPath := filepath.Join(configDir, file.Name())
+			configPath := filepath.Join(dirName, file.Name())
 			// Legge il contenuto del file JSON
 			config, err := os.ReadFile(configPath)
 			if err != nil {
@@ -76,7 +76,7 @@ func main() {
 	// Configurazione del server con mutex
 	mux := http.NewServeMux()
 	// Leggi e registra tutti gli endpoint dai file JSON
-	err := loadConfig(configFolder, mux)
+	err := loadConfig(configDir, mux)
 	if err != nil {
 		log.Fatalf("Errore durante il caricamento delle route: %v", err)
 	}
