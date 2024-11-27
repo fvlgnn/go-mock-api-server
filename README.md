@@ -98,7 +98,7 @@ Nel caso di un _esecuzione_ tramite _docker strategy_ dovranno essere modificati
 ## TODO
 
 - [x] con docker strategy, aggiungi variabile d'ambiente su dockerfile per impostare il nome della cartella contenente i file JSON di configurazione
-- [ ] con docker strategy imposta aggiungi opzione volume sulla cartella contenente i file JSON
-- [ ] aggiungi gestione dell'errore (possibilmente nella fase di init) per evitare il panic nel caso ci siano due endpoint con path identici
-- [ ] aggiungi su `main.go` una condizione per il quale se impostata la variabile `CONFIG_DIR` modifica la variabile globale `var configDir = "config"` (esempio `var configDir = os.Getenv("CONFIG_DIR")`)
+- [ ] con docker strategy aggiungi opzione volume sulla cartella contenente i file JSON
+- [ ] aggiungi gestione dell'errore nel caso ci siano due endpoint con path identici, possibilmente nella fase di init per evitare il panic.
+- [ ] aggiungi su `main.go` una condizione per il quale se impostata la variabile `CONFIG_DIR` modifica la variabile globale `var configDir = "config"` (esempio `var configDir = os.Getenv("CONFIG_DIR")`) in modo da non creare problemi se l'app viene usata sotto container o come standalone
 
