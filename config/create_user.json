@@ -1,10 +1,16 @@
 {
-    "request": {
-      "method": "POST",
-      "path": "/v1/user/create"
+  "request": {
+    "method": "POST",
+    "path": "/v1/user/create"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Location": "/v1/user/3"
     },
-    "response": {
-      "body": { "status": "success", "id": 3 }
+    "body": {
+      "status": "success",
+      "id": 3
     }
   }
-  
+}

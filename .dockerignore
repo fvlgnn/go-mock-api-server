@@ -1,0 +1,6 @@
+*
+!Dockerfile
+!go.mod
+!*.go
+!config/
+!config/*.json

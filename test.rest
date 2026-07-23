@@ -1,9 +1,14 @@
-GET /v1/users HTTP/1.1
-Host: 127.0.0.1:8080
+### Health
+GET http://127.0.0.1:8080/-/health
 
-# DELETE /v1/delete HTTP/1.1
-# Host: 127.0.0.1:8080
+### List users
+GET http://127.0.0.1:8080/v1/users
 
-# POST /v1/users/create HTTP/1.1
-# Host: 127.0.0.1:8080
-# Content-Type: application/json
+### Get a user
+GET http://127.0.0.1:8080/v1/user/4
+
+### Create a user
+POST http://127.0.0.1:8080/v1/user/create
+
+### Delete a user
+DELETE http://127.0.0.1:8080/v1/user/delete/3

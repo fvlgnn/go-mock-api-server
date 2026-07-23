@@ -4,6 +4,10 @@
     "path": "/v1/user/4"
   },
   "response": {
+    "status": 200,
+    "headers": {
+      "Cache-Control": "no-store"
+    },
     "body": [
       { "id": 4, "name": "Jon" }
     ]

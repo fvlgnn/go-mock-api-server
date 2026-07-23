@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version: 1.26.5
+          cache: true
+      - name: Check formatting
+        run: test -z "$(gofmt -l .)"
+      - name: Vet
+        run: go vet ./...
+      - name: Test
+        run: go test -race -coverprofile=coverage.out ./...
+      - name: Build
+        run: go build -trimpath ./...
+      - name: Validate release notes extraction
+        run: sh .github/scripts/release-notes.sh v1.0.0 /tmp/release-notes.md
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: docker/setup-buildx-action@v4
+      - name: Build container
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          load: true
+          tags: go-mock-api-server:test
+          build-args: |
+            VERSION=ci
+            COMMIT=${{ github.sha }}
+            BUILD_DATE=1970-01-01T00:00:00Z
+      - name: Smoke test container
+        run: |
+          docker run -d --name mock-api -p 8080:8080 go-mock-api-server:test
+          for attempt in {1..20}; do
+            if test "$(docker inspect --format='{{.State.Health.Status}}' mock-api)" = healthy; then
+              break
+            fi
+            sleep 1
+          done
+          test "$(docker inspect --format='{{.State.Health.Status}}' mock-api)" = healthy
+          curl --fail http://localhost:8080/-/health
+          curl --fail http://localhost:8080/v1/users
+      - name: Show logs on failure
+        if: failure()
+        run: docker logs mock-api
+      - name: Cleanup
+        if: always()
+        run: docker rm -f mock-api || true

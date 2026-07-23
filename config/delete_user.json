@@ -1,10 +1,17 @@
 {
-    "request": {
-      "method": "DELETE",
-      "path": "/v1/user/delete/3"
+  "request": {
+    "method": "DELETE",
+    "path": "/v1/user/delete/3"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Cache-Control": "no-store"
     },
-    "response": {
-      "body": { "status": "success", "description": "user deleted", "id": 3 }
+    "body": {
+      "status": "success",
+      "description": "user deleted",
+      "id": 3
     }
   }
-  
+}
